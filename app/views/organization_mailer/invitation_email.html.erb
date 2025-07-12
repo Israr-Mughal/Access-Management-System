@@ -8,19 +8,20 @@
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         line-height: 1.6;
-        color: #1f2937;
+        color: #e5e7eb;
         max-width: 600px;
         margin: 0 auto;
         padding: 20px;
-        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        min-height: 100vh;
       }
       .email-container {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(31, 41, 55, 0.9);
         backdrop-filter: blur(10px);
         border-radius: 16px;
         padding: 40px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        border: 1px solid rgba(34, 197, 94, 0.1);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(75, 85, 99, 0.3);
       }
       .header {
         text-align: center;
@@ -38,34 +39,35 @@
       .title {
         font-size: 28px;
         font-weight: bold;
-        color: #1f2937;
+        color: #ffffff;
         margin: 0 0 10px 0;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       .subtitle {
         font-size: 18px;
-        color: #6b7280;
+        color: #9ca3af;
         margin: 0;
       }
       .content {
         margin: 30px 0;
+        color: #d1d5db;
       }
       .organization-info {
-        background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        background: rgba(55, 65, 81, 0.5);
         border-radius: 12px;
         padding: 24px;
         margin: 20px 0;
-        border: 1px solid rgba(34, 197, 94, 0.2);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
       }
       .organization-name {
         font-size: 20px;
         font-weight: bold;
-        color: #1f2937;
+        color: #ffffff;
         margin: 0 0 5px 0;
       }
       .organization-type {
-        color: #059669;
+        color: #10b981;
         text-transform: capitalize;
         font-weight: 500;
       }
@@ -78,7 +80,7 @@
         font-size: 14px;
         font-weight: 600;
         margin: 15px 0;
-        box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.3);
+        box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.4);
       }
       .cta-button {
         display: inline-block;
@@ -90,34 +92,42 @@
         font-weight: 600;
         margin: 20px 0;
         text-align: center;
-        box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3), 0 4px 6px -2px rgba(34, 197, 94, 0.05);
+        box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.4), 0 4px 6px -2px rgba(34, 197, 94, 0.2);
         transition: all 0.2s ease;
       }
       .cta-button:hover {
         transform: translateY(-1px);
-        box-shadow: 0 20px 25px -5px rgba(34, 197, 94, 0.4), 0 10px 10px -5px rgba(34, 197, 94, 0.1);
+        box-shadow: 0 20px 25px -5px rgba(34, 197, 94, 0.5), 0 10px 10px -5px rgba(34, 197, 94, 0.3);
       }
       .details {
-        background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+        background: rgba(55, 65, 81, 0.5);
         border-left: 4px solid #22c55e;
         border-radius: 8px;
         padding: 20px;
         margin: 20px 0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
       .details strong {
-        color: #059669;
+        color: #10b981;
+      }
+      .details ul {
+        margin: 15px 0;
+        padding-left: 20px;
+        color: #d1d5db;
+      }
+      .details li {
+        margin: 8px 0;
       }
       .footer {
         margin-top: 30px;
         padding-top: 20px;
-        border-top: 1px solid rgba(34, 197, 94, 0.2);
+        border-top: 1px solid rgba(75, 85, 99, 0.3);
         font-size: 14px;
-        color: #6b7280;
+        color: #9ca3af;
         text-align: center;
       }
       .invitation-url {
-        background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+        background: rgba(55, 65, 81, 0.5);
         border: 1px solid rgba(34, 197, 94, 0.3);
         border-radius: 8px;
         padding: 12px;
@@ -125,11 +135,36 @@
         font-size: 12px;
         word-break: break-all;
         margin: 10px 0;
-        color: #059669;
+        color: #10b981;
       }
       .highlight {
-        color: #059669;
+        color: #10b981;
         font-weight: 600;
+      }
+      .info-table {
+        background: rgba(55, 65, 81, 0.5);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        border: 1px solid rgba(75, 85, 99, 0.3);
+      }
+      .info-table table {
+        width: 100%;
+        font-size: 14px;
+      }
+      .info-table td {
+        padding: 4px 0;
+        color: #d1d5db;
+      }
+      .info-table td:first-child {
+        color: #9ca3af;
+        width: 120px;
+      }
+      .info-table td strong {
+        color: #ffffff;
+      }
+      .info-table td strong.highlight {
+        color: #10b981;
       }
     </style>
   </head>
@@ -154,7 +189,7 @@
           <div class="organization-name">🏢 <%= @organization.name %></div>
           <div class="organization-type"><%= @organization.organization_type %> Organization</div>
           <% if @organization.description.present? %>
-            <p style="margin: 15px 0 0 0; color: #4b5563; line-height: 1.6;"><%= @organization.description %></p>
+            <p style="margin: 15px 0 0 0; color: #d1d5db; line-height: 1.6;"><%= @organization.description %></p>
           <% end %>
         </div>
 
@@ -166,25 +201,25 @@
 
         <div class="details">
           <p><strong>🚀 What happens next?</strong></p>
-          <ul style="margin: 15px 0; padding-left: 20px;">
-            <li style="margin: 8px 0;">Click the "Accept Invitation" button above</li>
-            <li style="margin: 8px 0;">Fill out your profile information (name, date of birth, phone, password)</li>
-            <li style="margin: 8px 0;">You'll automatically become a <strong><%= @role %></strong> of <strong><%= @organization.name %></strong></li>
-            <li style="margin: 8px 0;">Start collaborating with your new team! 🎉</li>
+          <ul>
+            <li>Click the "Accept Invitation" button above</li>
+            <li>Fill out your profile information (name, date of birth, phone, password)</li>
+            <li>You'll automatically become a <strong><%= @role %></strong> of <strong><%= @organization.name %></strong></li>
+            <li>Start collaborating with your new team! 🎉</li>
           </ul>
         </div>
 
-        <div style="background: linear-gradient(135deg, #f9fafb, #f3f4f6); border-radius: 8px; padding: 20px; margin: 20px 0;">
+        <div class="info-table">
           <p style="margin: 0 0 10px 0;"><strong class="highlight">📋 Invitation Details:</strong></p>
-          <table style="width: 100%; font-size: 14px;">
-            <tr><td style="padding: 4px 0; color: #6b7280; width: 120px;">Organization:</td><td style="padding: 4px 0;"><strong><%= @organization.name %></strong></td></tr>
-            <tr><td style="padding: 4px 0; color: #6b7280;">Your Role:</td><td style="padding: 4px 0;"><strong class="highlight"><%= @role.humanize %></strong></td></tr>
-            <tr><td style="padding: 4px 0; color: #6b7280;">Invited by:</td><td style="padding: 4px 0;"><%= @invited_by.first_name %> <%= @invited_by.last_name %> (<%= @invited_by.email %>)</td></tr>
-            <tr><td style="padding: 4px 0; color: #6b7280;">Your Email:</td><td style="padding: 4px 0;"><strong><%= @invited_email %></strong></td></tr>
+          <table>
+            <tr><td>Organization:</td><td><strong><%= @organization.name %></strong></td></tr>
+            <tr><td>Your Role:</td><td><strong class="highlight"><%= @role.humanize %></strong></td></tr>
+            <tr><td>Invited by:</td><td><%= @invited_by.first_name %> <%= @invited_by.last_name %> (<%= @invited_by.email %>)</td></tr>
+            <tr><td>Your Email:</td><td><strong><%= @invited_email %></strong></td></tr>
           </table>
         </div>
 
-        <p style="font-size: 14px; color: #6b7280; margin: 20px 0 5px 0;">
+        <p style="font-size: 14px; color: #9ca3af; margin: 20px 0 5px 0;">
           <strong>🔗 Can't click the button?</strong> Copy and paste this link into your browser:
         </p>
         <div class="invitation-url"><%= @invitation_url %></div>
