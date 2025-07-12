@@ -1,0 +1,162 @@
+<div class="px-4 py-6 sm:px-0">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-white">
+        Welcome back, <%= @user.first_name %>!
+      </h1>
+      <p class="text-gray-400 mt-2">Here's your dashboard overview</p>
+    </div>
+
+    <div class="w-full">
+      <!-- Main Content -->
+      <div class="w-full">
+        <div class="bg-gray-800/90 backdrop-blur-md shadow-xl rounded-2xl border border-gray-700 p-6">
+          <!-- User Profile Card -->
+          <div class="bg-gray-700/50 border border-gray-600 rounded-xl p-6 mb-6">
+            <div class="flex items-center space-x-4">
+              <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center">
+                <span class="text-white text-xl font-bold">
+                  <%= @user.first_name[0].upcase %>
+                </span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-white">Your Profile</h3>
+                <p class="text-gray-400">Active Access Management Account</p>
+              </div>
+            </div>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-gray-800/50 rounded-lg p-3">
+                <p class="text-sm text-gray-400 font-medium">Age</p>
+                <p class="text-lg font-semibold text-white"><%= @user.age %> years old</p>
+              </div>
+              <div class="bg-gray-800/50 rounded-lg p-3">
+                <p class="text-sm text-gray-400 font-medium">Age Group</p>
+                <p class="text-lg font-semibold text-white"><%= @user.age_group %></p>
+              </div>
+              <div class="bg-gray-800/50 rounded-lg p-3">
+                <p class="text-sm text-gray-400 font-medium">Account Type</p>
+                <p class="text-lg font-semibold text-white"><%= @user.minor? ? 'Minor' : 'Adult' %></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Account Stats -->
+          <div class="bg-gray-700/50 border border-gray-600 rounded-xl p-6 mb-6 w-full">
+            <div class="flex items-center space-x-3 mb-4">
+              <i class="fas fa-chart-line text-green-400"></i>
+              <h3 class="text-lg font-semibold text-white">Account Stats</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+              <div class="bg-gray-800/50 rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-building text-white"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400 font-medium">Organizations</p>
+                    <p class="text-2xl font-bold text-white"><%= @user.organizations.count %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-800/50 rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-calendar-alt text-white"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400 font-medium">Member Since</p>
+                    <p class="text-2xl font-bold text-white"><%= @user.created_at.strftime("%b %Y") %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-800/50 rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-users text-white"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400 font-medium">Total Members</p>
+                    <p class="text-2xl font-bold text-white"><%= @user.organizations.sum(&:member_count) %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-800/50 rounded-lg p-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-shield-alt text-white"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400 font-medium">Account Status</p>
+                    <p class="text-2xl font-bold text-white">Active</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Age Restrictions -->
+          <% if @age_restrictions.any? %>
+            <div class="bg-gray-700/50 border border-yellow-500/50 rounded-xl p-6 mb-6">
+              <div class="flex items-center space-x-3 mb-3">
+                <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                <h3 class="text-lg font-semibold text-white">Age-Based Restrictions</h3>
+              </div>
+              <ul class="list-disc list-inside space-y-2">
+                <% @age_restrictions.each do |restriction| %>
+                  <li class="text-sm text-gray-300"><%= restriction %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Organizations -->
+          <div class="bg-gray-700/50 border border-gray-600 rounded-xl p-6">
+            <div class="flex items-center space-x-3 mb-4">
+              <i class="fas fa-building text-green-400"></i>
+              <h3 class="text-lg font-semibold text-white">Your Organizations</h3>
+            </div>
+            <% if @organizations.any? %>
+              <div class="space-y-3">
+                <% @organizations.each do |org| %>
+                  <div class="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-600">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-building text-white"></i>
+                      </div>
+                      <div>
+                        <%= link_to org.name, org, class: "font-medium text-white hover:text-green-400 transition-colors duration-200" %>
+                        <span class="ml-2 inline-flex px-2 py-1 text-xs font-medium bg-gray-700 text-gray-300 rounded-full">
+                          <%= org.organization_type %>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                      <%= org.member_count %> members
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="mt-4">
+                <%= link_to organizations_path, class: "inline-flex items-center space-x-2 text-green-400 hover:text-green-300 text-sm font-medium transition-colors duration-200" do %>
+                  <span>View All Organizations</span>
+                  <i class="fas fa-arrow-right"></i>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="text-center py-8">
+                <i class="fas fa-building text-gray-600 text-4xl mb-4"></i>
+                <p class="text-gray-400 text-sm mb-4">No organizations yet.</p>
+                <%= link_to organizations_path, class: "inline-flex items-center space-x-2 text-green-400 hover:text-green-300 text-sm font-medium transition-colors duration-200" do %>
+                  <span>Browse Organizations</span>
+                  <i class="fas fa-arrow-right"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

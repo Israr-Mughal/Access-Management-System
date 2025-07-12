@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're invited to join <%= @organization.name %></title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+      }
+      .email-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(34, 197, 94, 0.1);
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        background: linear-gradient(135deg, #22c55e, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+      }
+      .title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #1f2937;
+        margin: 0 0 10px 0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .subtitle {
+        font-size: 18px;
+        color: #6b7280;
+        margin: 0;
+      }
+      .content {
+        margin: 30px 0;
+      }
+      .organization-info {
+        background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        border-radius: 12px;
+        padding: 24px;
+        margin: 20px 0;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+      .organization-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #1f2937;
+        margin: 0 0 5px 0;
+      }
+      .organization-type {
+        color: #059669;
+        text-transform: capitalize;
+        font-weight: 500;
+      }
+      .role-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #22c55e, #10b981);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 15px 0;
+        box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.3);
+      }
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #22c55e, #10b981);
+        color: white;
+        text-decoration: none;
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-weight: 600;
+        margin: 20px 0;
+        text-align: center;
+        box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.3), 0 4px 6px -2px rgba(34, 197, 94, 0.05);
+        transition: all 0.2s ease;
+      }
+      .cta-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 20px 25px -5px rgba(34, 197, 94, 0.4), 0 10px 10px -5px rgba(34, 197, 94, 0.1);
+      }
+      .details {
+        background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+        border-left: 4px solid #22c55e;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .details strong {
+        color: #059669;
+      }
+      .footer {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(34, 197, 94, 0.2);
+        font-size: 14px;
+        color: #6b7280;
+        text-align: center;
+      }
+      .invitation-url {
+        background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        border-radius: 8px;
+        padding: 12px;
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+        font-size: 12px;
+        word-break: break-all;
+        margin: 10px 0;
+        color: #059669;
+      }
+      .highlight {
+        color: #059669;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="header">
+        <div class="logo">🔐 Access Management System</div>
+        <h1 class="title">You're Invited!</h1>
+        <p class="subtitle">Complete your profile to join <span class="highlight"><%= @organization.name %></span></p>
+      </div>
+
+      <div class="content">
+        <p>Hi there! 👋</p>
+
+        <p>
+          <strong class="highlight"><%= @invited_by.first_name %> <%= @invited_by.last_name %></strong>
+          has invited you to join <strong class="highlight"><%= @organization.name %></strong> as a
+          <span class="role-badge"><%= @role.humanize %></span>
+        </p>
+
+        <div class="organization-info">
+          <div class="organization-name">🏢 <%= @organization.name %></div>
+          <div class="organization-type"><%= @organization.organization_type %> Organization</div>
+          <% if @organization.description.present? %>
+            <p style="margin: 15px 0 0 0; color: #4b5563; line-height: 1.6;"><%= @organization.description %></p>
+          <% end %>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="<%= @invitation_url %>" class="cta-button">
+            ✨ Accept Invitation & Complete Profile
+          </a>
+        </div>
+
+        <div class="details">
+          <p><strong>🚀 What happens next?</strong></p>
+          <ul style="margin: 15px 0; padding-left: 20px;">
+            <li style="margin: 8px 0;">Click the "Accept Invitation" button above</li>
+            <li style="margin: 8px 0;">Fill out your profile information (name, date of birth, phone, password)</li>
+            <li style="margin: 8px 0;">You'll automatically become a <strong><%= @role %></strong> of <strong><%= @organization.name %></strong></li>
+            <li style="margin: 8px 0;">Start collaborating with your new team! 🎉</li>
+          </ul>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #f9fafb, #f3f4f6); border-radius: 8px; padding: 20px; margin: 20px 0;">
+          <p style="margin: 0 0 10px 0;"><strong class="highlight">📋 Invitation Details:</strong></p>
+          <table style="width: 100%; font-size: 14px;">
+            <tr><td style="padding: 4px 0; color: #6b7280; width: 120px;">Organization:</td><td style="padding: 4px 0;"><strong><%= @organization.name %></strong></td></tr>
+            <tr><td style="padding: 4px 0; color: #6b7280;">Your Role:</td><td style="padding: 4px 0;"><strong class="highlight"><%= @role.humanize %></strong></td></tr>
+            <tr><td style="padding: 4px 0; color: #6b7280;">Invited by:</td><td style="padding: 4px 0;"><%= @invited_by.first_name %> <%= @invited_by.last_name %> (<%= @invited_by.email %>)</td></tr>
+            <tr><td style="padding: 4px 0; color: #6b7280;">Your Email:</td><td style="padding: 4px 0;"><strong><%= @invited_email %></strong></td></tr>
+          </table>
+        </div>
+
+        <p style="font-size: 14px; color: #6b7280; margin: 20px 0 5px 0;">
+          <strong>🔗 Can't click the button?</strong> Copy and paste this link into your browser:
+        </p>
+        <div class="invitation-url"><%= @invitation_url %></div>
+      </div>
+
+      <div class="footer">
+        <p>📧 This invitation was sent to <strong><%= @invited_email %></strong></p>
+        <p>❓ If you have questions about this invitation, please contact <strong class="highlight"><%= @invited_by.email %></strong></p>
+        <p style="margin-top: 15px; opacity: 0.8;">
+          © <%= Date.current.year %> Access Management System App. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
